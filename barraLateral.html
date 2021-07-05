@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <style>
+
+      *{
+          margin:10px;
+          padding:0px;
+        }
+
+    body {
+    //font-family: 'Raleway';font-size: 22px;
+    }
+    
+    </style>
+    
+    
+    
+  </head>
+  <body bgcolor=#F2F2F2>
+    <h2>Generación de bitácoras</h2>
+    <p>Rellenar los datos y ejecutar</p>
+    <form>
+
+      <input id="idCarpetaMaestra" placeholder="id de la carpeta" type="text" style="width: 150px;">
+
+      <br>
+      <br>
+      
+      <select name="select" id="filtroTerritorio" style="width: 150px;">
+      <option disabled selected>TERRITORIO</option>
+      <option value="ACAYUCAN">ACAYUCAN</option>
+      <option value="BALANCAN">BALANCAN</option>
+      <option value="CAMPECHE">CAMPECHE</option>
+      <option value="CHIHUAHUA">CHIHUAHUA</option>
+      <option value="COLIMA">COLIMA</option>
+      <option value="COMALCALCO">COMALCALCO</option>
+      <option value="CORDOBA">CORDOBA</option>
+      <option value="DURANGO">DURANGO</option>
+      <option value="GUERRERO">GUERRERO</option>
+      <option value="HIDALGO">HIDALGO</option>
+      <option value="ISTMO">ISTMO</option>
+      <option value="MICHOACAN">MICHOACAN</option>
+      <option value="MIXTECA">MIXTECA</option>
+      <option value="MORELOS">MORELOS</option>
+      <option value="NAYARIT">NAYARIT</option>
+      <option value="OCOSINGO">OCOSINGO</option>
+      <option value="PALENQUE">PALENQUE</option>
+      <option value="PAPANTLA">PAPANTLA</option>
+      <option value="PICHUCALCO">PICHUCALCO</option>
+      <option value="PUEBLA">PUEBLA</option>
+      <option value="SAN LUIS POTOSI">SAN LUIS POTOSI</option>
+      <option value="SINALOA">SINALOA</option>
+      <option value="TAMAULIPAS">TAMAULIPAS</option>
+      <option value="TANTOYUCA">TANTOYUCA</option>
+      <option value="TAPACHULA">TAPACHULA</option>
+      <option value="TEAPA">TEAPA</option>
+      <option value="TLAXCALA">TLAXCALA</option>
+      <option value="TZUCACAB - OTHON P. BLANCO">TZUCACAB - OTHON P. BLANCO</option>  
+	  </select>
+      
+      
+      <br><br>
+      <button id="boton" class="action"> Ejecutar funcion</button>
+    </form>
+
+    <br><br>
+
+    <div>
+          <h2>Enviar archivos por territorio</h2>
+          <p>Rellenar los campos y enviar</p>
+
+          <input id="idCarpetaAEnviar" placeholder="id de la carpeta a enviar" type="text" style="width: 150px;">
+          <br><br>
+          <input id="idMailEnviar" placeholder="correo a enviar" type="text" style="width: 150px;">
+          <br><br>
+          <button id="botonEnviar" class="action"> Enviar Documentos</button>
+    </div>
+
+ 
+
+    <script>
+      // funcion cuando le den clic al boton
+      document.getElementById("boton").addEventListener("click",enviarRespuesta);
+      
+      function enviarRespuesta(){
+		
+        // traemos los valores de los input mediante si ID
+        var territorio= document.getElementById("filtroTerritorio").value;
+
+        // traemos los valores de los input mediante si ID
+        var carpeta= document.getElementById("idCarpetaMaestra").value;
+        
+        google.script.run.global(territorio,carpeta);
+        
+        // limpiar los ID
+		    //document.getElementById("filtroTerritorio").value="";   
+
+	    }
+
+
+      // funcion cuando le den clic al boton Enviar
+      document.getElementById("botonEnviar").addEventListener("click",enviarRespuestaDeCorreo);
+      
+      function enviarRespuestaDeCorreo(){
+		
+        // traemos los valores de los input mediante si ID
+        var carpetaDeArchivos= document.getElementById("idCarpetaAEnviar").value;
+
+        // traemos los valores de los input mediante si ID
+        var mail= document.getElementById("idMailEnviar").value;
+        
+        google.script.run.enviarCorreo(carpetaDeArchivos,mail);
+        
+        // limpiar los ID
+		    //document.getElementById("filtroTerritorio").value="";   
+
+	    }
+
+    </script>
+    
+  </body>
+
+  <!--
+    hojas de estilo de google
+    https://developers.google.com/workspace/add-ons/guides/css
+  -->
+</html>
+
+
