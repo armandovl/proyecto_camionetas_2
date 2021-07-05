@@ -30,7 +30,7 @@
       <br>
       <br>
       
-      <select name="select" id="filtroTerritorio" style="width: 150px;">
+      <select name="select" id="filtroTerritorio" style="width: 150px;" onChange="cambiarInput()">
       <option disabled selected>TERRITORIO</option>
       <option value="ACAYUCAN">ACAYUCAN</option>
       <option value="BALANCAN">BALANCAN</option>
@@ -83,6 +83,105 @@
  
 
     <script>
+
+      function cambiarInput(){
+        var inputNombre = document.getElementById("idMailEnviar");
+        var territorioSeleccionado= document.getElementById("filtroTerritorio").value;
+        
+        switch(territorioSeleccionado){
+          case 'ACAYUCAN':
+          inputNombre.value='acayucansembrandovida@gmail.com,liz-al1997@hotmail.com';
+          break;
+          case 'BALANCAN':
+          inputNombre.value='erika.log85@gmail.com,lauaquino1994@gmail.com';
+          break;
+          case 'CHIHUAHUA':
+          inputNombre.value='sembrandovidachihuahua2021@gmail.com,serranoalyna1@gmail.com';
+          break;
+          case 'COLIMA':
+          inputNombre.value='sembrandovidacolima@gmail.com,maxi.ventura@bienestar.gob.mx';
+          break;
+          case 'COMALCALCO':
+
+          inputNombre.value='coordadmitiva.comalcalco@gmail.com,mari7716@hotmail.com';break;
+          case 'CORDOBA':
+          inputNombre.value='sembrandocordoba@gmail.com,roberto_t7@hotmail.com';
+          break;
+          case 'DURANGO':
+          inputNombre.value='judurango@hotmail.com,cinthya.padilla@bienestar.gob.mx';
+          break;
+          case 'GUERRERO':
+          inputNombre.value='rocio.basilio@bienestar.gob.mx,rocio.svgro@gmail.com';
+          break;
+          case 'HIDALGO ':
+          inputNombre.value='cpsebastian.hernandez@gmail.com,cpsebastian.hernandez@gmail.com';
+          break;
+          case 'MICHOACAN':
+          inputNombre.value='norma.bienestar1@gmail.com,norma.bienestarmasa31@gmail.com';
+          break;
+          case 'MORELOS':
+          inputNombre.value='tinocoextreme@yahoo.com.mx,tinocoextreme@yahoo.com.mx';
+          break;
+          case 'NAYARIT':
+          inputNombre.value='martinezmanu5454@gmail.com,martinezmanu5454@gmail.com';
+          break;
+          case 'ISTMO':
+          inputNombre.value='enlaceistmo1@gmail.com,enlaceistmo1@gmail.com';
+          break;
+          case 'MIXTECA':
+          inputNombre.value='sembrandovidaoaxbie@gmail.com,oskremmaa@gmail.com';
+          break;
+          case 'OCOSINGO':
+          inputNombre.value='ct.ocosingo.psv.2021@gmail.com  ,rolancenter@hotmail.com';
+          break;
+          case 'PALENQUE':
+          inputNombre.value='pacomeneses24@gmail.com,pacomeneses24@gmail.com';
+          break;
+          case 'PAPANTLA':
+          inputNombre.value='enlace.cv2021@gmail.com,guadalupe.moralesg@bienestar.gob.mx';
+          break;
+          case 'PICHUCALCO'
+          :inputNombre.value='jesus.maldonado@bienestar.gob.mx,jesus.maldonado@bienestar.gob.mx';
+          break;
+          case 'PUEBLA':
+          inputNombre.value='enlace.sembrandovida.puebla@gmail.com,jakicoper@gmail.com';
+          break;
+          case 'SAN LUIS POTOSI':
+          inputNombre.value='slp.sembrandovida@gmail.com,alejandraml2014@gmail.com';
+          break;
+          case 'SINALOA':
+          inputNombre.value='lidia.penuelas@bienestar.gob.mx,Reba_74m@hotmail.com';
+          break;
+          case 'TAMAULIPAS':
+          inputNombre.value='sembrandovidaentamaulipas@gmail.com,jose.rivera@bienestar.gob.mx';
+          break;
+          case 'TANTOYUCA':
+          inputNombre.value='Eduardoher1993@outlook.com,Eduardoher1993@outlook.com';
+          break;
+          case 'TAPACHULA':
+          inputNombre.value='enlacecttap@gmail.com, juansvtap@gmail.com';
+          break;
+          case 'TEAPA':
+          inputNombre.value='sembrandovidateapa1@gmail.com,angeles.bienestarteapa@gmail.com';
+          break;
+          case 'TLAXCALA':
+          inputNombre.value='enlac.sv_tlax@outlook.com,bernapct@hotmail.com';
+          break;
+          case 'TZUCACAB - OTHON P. BLANCO':
+          inputNombre.value='sembrandovidaqroo.yuc@gmail.com,yesvaldezfuentes@gmail.com';
+          break;
+          case 'CAMPECHE':
+          inputNombre.value='sembrandovida.sedexpujil@gmail.com,yuridiana.lazaro@bienestar.gob.mx';
+          break;
+
+
+        }
+        
+
+      }
+
+
+
       // funcion cuando le den clic al boton
       document.getElementById("boton").addEventListener("click",enviarRespuesta);
       

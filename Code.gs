@@ -17,13 +17,15 @@ function mostrarBarra(){
       .showSidebar(html);
 }
 
-/***************************************************************** /
+/***************************************************************** */
 
 /*
 function tres(){
-global("MORELOS","18key47Qg16etOJ5utQLJXfj84juO7SK5");
+global("TLAXCALA","16IEXma1KmGLYshoUpoBrpBpgyXt8cV24");
 }
 */
+
+
 
 
 
@@ -82,15 +84,7 @@ function global(argumentoTerritorio,argumentoIdCarpeta){
       /**/
 
 
-      /***************************copia del archivo*********************************************** */
-        nombreCopia=(datos_filtrados[0][3]);
-      
-      
-        documentoCopiado= DriveApp.getFileById("1HGwuqgbpvKfwJEk6VPuyIuacJcWm8h4g6WxrAboVmDY").makeCopy(nombreCopia);
-  
-        var idNuevoDocumento = (documentoCopiado.getId());
 
-      /**/
 
       /*********************filtrar solo las columnas que me interesan slice push******************/ //TUTORIAL
         var nuevoArreglo=[];
@@ -100,7 +94,7 @@ function global(argumentoTerritorio,argumentoIdCarpeta){
         }
       /**/
 
-      /************************añadir un dia a la fecha******************************** */
+      /************************añadir un dia a la fecha***********
 
         for (w=0;w<=nuevoArreglo.length-1;w++) {
         columna=0;
@@ -117,23 +111,49 @@ function global(argumentoTerritorio,argumentoIdCarpeta){
         nuevoArreglo[w].splice(0,1,nuevaFecha);
   
         }
+        ********************* */
+
+
+      /***************************copia del archivo*********************************************** */
+        nombreCopia=(datos_filtrados[0][3]);
+      
+      /*************************AQUI TIENE QUE IR EL MALDITO CAMBIO***************************************/
+
+        var tamanio= nuevoArreglo.length;
+
+        if(tamanio<=4){
+          documentoCopiado= DriveApp.getFileById("1vkzCH4NZq5ZqIbWED-rGx92JRWptYRa5ojNHfFcTlHY").makeCopy(nombreCopia);
+        } else if( tamanio<=8){
+          documentoCopiado= DriveApp.getFileById("1L4bm-NmuIWnEbd61QN3rNJ5HV45-1TMGFytyzy3uyBM").makeCopy(nombreCopia);
+        } else if(tamanio<=12){
+          documentoCopiado= DriveApp.getFileById("14Vx955tnUXGwMULn3dHOK-lrgXB-7oQ2kCNiA41GlBo").makeCopy(nombreCopia);
+        } else{
+          documentoCopiado= DriveApp.getFileById("1hydEOzqbUkiUGCjeJQlaXeF_J4WyNq-6kOxrrcny8LQ").makeCopy(nombreCopia);
+        }
+
         
+  
+        var idNuevoDocumento = (documentoCopiado.getId());
+
+      /**/
+
+
       /********************************Traer la hoja************************************************* */
         //traer la hoja de cálculo Plantilla por su id
         var archivoPlantilla =SpreadsheetApp.openById(idNuevoDocumento);
 
         // traer las hojas del archivo Plantilla
-        var hojaPlantilla= archivoPlantilla.getSheetByName("Hoja2");
+        var hojaPlantilla= archivoPlantilla.getSheetByName("Hoja1");
       /**/
 
 
       /************************************pegar valores *************************************************/
   
         //Pegar la tabla
-        var rangoAPegar= hojaPlantilla.getRange(12,1, nuevoArreglo.length,nuevoArreglo[0].length);
+        var rangoAPegar= hojaPlantilla.getRange(14,1, nuevoArreglo.length,nuevoArreglo[0].length);
         rangoAPegar.setValues(nuevoArreglo);
 
-        //pegar la marca
+        //pegar vehículo
         var rangoAPegar= hojaPlantilla.getRange(7,2);
         // arreglo[0][3] [fila] [columna]
         rangoAPegar.setValue(datos_filtrados[0][11]);
@@ -149,43 +169,30 @@ function global(argumentoTerritorio,argumentoIdCarpeta){
         rangoAPegar.setValue(datos_filtrados[0][5]);
 
         //pegar monedero
-        var rangoAPegar= hojaPlantilla.getRange(9,2);
+        var rangoAPegar= hojaPlantilla.getRange(9,5);
         // arreglo[0][3] [fila] [columna]
         rangoAPegar.setValue(datos_filtrados[0][2]);
+         
+        //pegar serie NIV
+        var rangoAPegar= hojaPlantilla.getRange(9,2);
+        // arreglo[0][3] [fila] [columna]
+        rangoAPegar.setValue(datos_filtrados[0][12]);
 
+   /****************pegar hasta abajo****************/
         //pegar el resguardante
-        var rangoAPegar= hojaPlantilla.getRange(29,4);
+        var rangoAPegar= hojaPlantilla.getRange(1,2);
         // arreglo[0][3] [fila] [columna]
         rangoAPegar.setValue(datos_filtrados[0][3]);
-
-
-        // hacer la suma de litros y pegarla //TUTORIAL
-        var suma = 0;
-        for (l=0;l<=nuevoArreglo.length-1;l++) {
-        //var suma_total_dos= suma_total_dos+ nuevoArreglo[i][1]
-        columna=2;
-        var valorASumar= nuevoArreglo[l][columna];
-        var suma = suma + valorASumar;
-        }
-
-        //pegar la suma de litros
-        var rangoAPegar= hojaPlantilla.getRange(24,3);
-        rangoAPegar.setValue(suma);
-
-
-        // hacer la suma del importe y pegarla //TUTORIAL
-        var suma = 0;
-        for (j=0;j<=nuevoArreglo.length-1;j++) {
-        //var suma_total_dos= suma_total_dos+ nuevoArreglo[i][1]
-        columna=3;
-        var valorASumar= nuevoArreglo[j][columna];
-        var suma = suma + valorASumar;
-        }
-
-        //pegar la suma de importe
-        var rangoAPegar= hojaPlantilla.getRange(24,4);
-        rangoAPegar.setValue(suma);
       
+      
+        //pegar el jud
+        var rangoAPegar= hojaPlantilla.getRange(1,1);
+        // arreglo[0][3] [fila] [columna]
+        rangoAPegar.setValue(datos_filtrados[0][13]);
+
+
+
+   
       /*************************************************Mover archivo */
 
 
@@ -198,7 +205,7 @@ function global(argumentoTerritorio,argumentoIdCarpeta){
 
       var libro =SpreadsheetApp.getActive();
       var hojaDeTrabajo= libro.getSheetByName('Sheet1');
-      hojaDeTrabajo.appendRow([nombreCopia,datos_filtrados[0][4],arregloMatch[i],new Date()]);
+      hojaDeTrabajo.appendRow([nombreCopia,datos_filtrados[0][4],arregloMatch[i],new Date(),nuevoArreglo.length]);
 
     } //aquì termina el for
 
@@ -247,7 +254,11 @@ function enviarCorreo(argumentoCarpetaEnviar,argumentoMail) {
 
     //console.log(nuevoArreglo);
 
-    GmailApp.sendEmail(argumentoMail, "Asunto", "mensaje", {attachments:nuevoArreglo});
+    var mensaje = "Estimados (as) Jefes de departamento \n\n Por medio de la presente, hago llegar las bitácoras correspondientes al mes de junio de su territorio. \n\n Lo anterior, con la finalidad de que puedan validarse y, en caso de no existir inconveniente, proceder a ser firmada por los usuarios. Es importante notificar si existe algún error, a fin de solventar en tiempo y forma el inconveniente. \n\n Cabe mencionar que dichas bitácoras deberán ser previamente firmadas y escaneadas en formato PDF y ser enviadas en los próximos 5 días hábiles después de la entrega, a través del siguiente link: \n\n Link de carga: \n\n  https://forms.gle/WfGNjUZTZk8aXqqH9 \n\n Agradecemos su atención, quedamos a sus órdenes. \n\n Saludos cordiales. \n\n En un bosque se bifurcaron dos caminos, y yo... Yo tomé el menos transitado. Esto marcó toda la diferencia. R.F"
+
+//, 
+    GmailApp.sendEmail(argumentoMail, "BITÁCORA O. CENTRAL JUNIO", mensaje,{attachments:nuevoArreglo});
+    Browser.msgBox("Se ha enviado el correo");
 
    };
 
